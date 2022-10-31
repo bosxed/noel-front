@@ -1,4 +1,10 @@
+import * as React from 'react';
 const FormCategorias = (accion)=> {   
+      const [checked, setChecked] = React.useState(false);
+
+  const handleChange = () => {
+    setChecked(!checked);
+  };
     let mensaje='';
     if  (accion === 'editar')
     {
@@ -26,8 +32,8 @@ const FormCategorias = (accion)=> {
                 </div>
                 <div className="col-4">
                     Ingrese el estado de la categoria
-                    {/* <input className="form-control form-control-sm" type="checkbox" value="" name="estado" id="estado"/> */}
-                    <input className="form-control form-control-sm" type="checkbox" id="estado" name="estado" value="Estado" />
+                    <input className='from-control' type="checkbox" value="Estado" name="estado" id="estado" checked={checked} onChange={handleChange}/>  
+                    {/* <input className="form-control form-control-sm" type="checkbox" id="estado" name="estado" value="Estado" checked={checked} onChange={handleChange}/> */}
                 </div>
                 <br></br>
                 <br></br>
