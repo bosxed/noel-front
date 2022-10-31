@@ -59,9 +59,9 @@ const TablaCategorias = () => {
                                     <div className="card-body">
                                         <h5 className="card-title">{categoria.nombre}</h5>
                                         <p className="card-text">{categoria.descripcion}</p>
-                                        {/* <a href="/" className="btn btn-primary"></a> */}
-                                        <button className="btn btn-primary btn-sm me">Editar</button>
-                                    <button className="btn btn-danger btn-sm">Eliminar</button>
+                                        <a href="/categorias/form" className="btn btn-primary btn-sm me" >Editar</a>
+                                        {/* <button className="btn btn-primary btn-sm me" onclick={href="/categorias/form"}>Editar</button> */}
+                                    <button className="btn btn-danger btn-sm" onClick={() => {if(window.confirm('Esta seguro que desea eliminar esta categoria?')){ this.deleteHandler()};}}>Eliminar</button>
                                     </div>
                             </div>
                             </div>
