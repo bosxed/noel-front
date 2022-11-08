@@ -16,6 +16,7 @@ const App = () => {
           <Route path="/" element={<Banner/>} exact  ></Route>
           <Route path="/categorias" element={<TablaCategorias />} exact  ></Route>
           <Route path="/categorias/form" element={<FormCategorias />} exact  ></Route>
+          <Route path="/categorias/form:id" element={<FormCategorias />} exact  ></Route>
         </Routes>
       </BrowserRouter>
       <Footer />

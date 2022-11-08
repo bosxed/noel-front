@@ -111,13 +111,13 @@ const TablaCategorias = () => {
                                     ) :
                                     listaCategorias.map((categoria) => (
 
-                                        <div className="col-4">
-                                            <div className="card" style={{ width: "18rem" }}>
+                                        <div className="col-4" >
+                                            <div className="card" style={{ width: "18rem" }} key={categoria.id}>
                                                 <img src={categoria.imagen} className="card-img-top" alt="hola" style={{ width: "286", height: "171" }}></img>
                                                 <div className="card-body">
                                                     <h5 className="card-title">{categoria.nombre}</h5>
                                                     <p className="card-text">{categoria.descripcion}</p>
-                                                    <a href="/categorias/form" className="btn btn-primary btn-sm me" >Editar</a>
+                                                    <a href={"/categorias/form/"+categoria.id} className="btn btn-primary btn-sm me" >Editar</a>
                                                     {/* <button className="btn btn-primary btn-sm me" onclick={href="/categorias/form"}>Editar</button> */}
                                                     <button className="btn btn-danger btn-sm" onClick={() => { if (window.confirm('Esta seguro que desea eliminar esta categoria?')) { this.deleteHandler() }; }}>Eliminar</button>
                                                 </div>
