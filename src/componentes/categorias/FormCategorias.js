@@ -1,7 +1,7 @@
 import * as React from 'react';
 import categoriaServicios from '../../servicios/categoriaServicios';
-import {useNavigate} from "react-router-dom"
-import { useEffect, useState,useParams } from "react";
+import {useNavigate,useParams } from "react-router-dom"
+import { useEffect, useState} from "react";
 import userEvent from '@testing-library/user-event';
 const FormCategorias = (accion) => {
     // const [checked, setChecked] = React.useState(false);
@@ -12,10 +12,8 @@ const FormCategorias = (accion) => {
     const [description, setDescription] = useState("");
     const [estado, setEstado] = useState(false);
     const [imagen, setImagen] = useState("");
-    const [ titulo, setTitulo ] = useState("");
-    // const handleChange = () => {
-    //     setChecked(!checked);
-    // };
+    const [titulo, setTitulo ] = useState("");
+
     let mensaje = '';
     if (accion === 'editar') {
         mensaje = 'Categoria';
@@ -30,7 +28,7 @@ const FormCategorias = (accion) => {
         try {
             const categoriaDatos = {
                 nombre: nombre,
-                description: description.FormCategorias,
+                description: description,
                 estado: estado,
                 imagen:imagen
 
@@ -38,9 +36,11 @@ const FormCategorias = (accion) => {
             console.log(categoriaDatos);
             if (id == null){
                 const respuesta = await categoriaServicios.guardarCategoria(categoriaDatos);
+                setTitulo("Registro");
             }
             else{
-                const respuesta = await categoriaServicios.EditarCategoria(id,categoriaDatos);
+                const respuesta = await categoriaServicios.editarCategoria(id,categoriaDatos);
+                setTitulo("Edición");
             }
 
         navigateTo("/categorias");
@@ -51,7 +51,7 @@ const FormCategorias = (accion) => {
 
     const cargarCategoria = async () => {
         try {
-            const respuesta = await categoriaServicios.cargarCategoria(id);
+            const respuesta = await categoriaServicios.cargarCategorias(id);
             if (respuesta.status === 200) {
                 setNombre(respuesta.data.nombre);
                 setDescription(respuesta.data.description);
@@ -94,19 +94,19 @@ const FormCategorias = (accion) => {
                 <div className="row">
                     <div className="col-4">
                         Ingrese el nombre de la categoria
-                        <input className="form-control form-control-sm" type="text" placeholder="nombre" name="nombre" id="nombre" onChange={cambiarNombre} />
+                        <input className="form-control form-control-sm" type="text" placeholder="nombre" name="nombre" id="nombre" onChange={cambiarNombre} value={nombre}/>
                     </div>
                     <div className="col-4">
                         Ingrese la descripcion de la categoria
-                        <input className="form-control form-control-sm" type="text" placeholder="descripcion" name="descripcion" id="descripcion" onChange={cambiarDescription} />
+                        <input className="form-control form-control-sm" type="text" placeholder="descripcion" name="descripcion" id="descripcion" onChange={cambiarDescription}  value={description} />
                     </div>
                     <div className="col-4">
                         Ingrese la ruta de la imagen de la categoria
-                        <input className="form-control form-control-sm" type="text" placeholder="imagen" name="imagen" id="imagen" onChange={cambiarImagen} />
+                        <input className="form-control form-control-sm" type="text" placeholder="imagen" name="imagen" id="imagen" onChange={cambiarImagen}  value={imagen}/>
                     </div>
                     <div className="col-4">
                         Ingrese el estado de la categoria
-                        <input className='from-control' type="checkbox" value="Estado" name="estado" id="estado" checked={estado} onChange={cambiarEstado} />
+                        <input className='from-control' type="checkbox" name="estado" id="estado" checked={estado} onChange={cambiarEstado} value={estado}/>
                         {/* <input className="form-control form-control-sm" type="checkbox" id="estado" name="estado" value="Estado" checked={checked} onChange={handleChange}/> */}
                     </div>
                     <br></br>
