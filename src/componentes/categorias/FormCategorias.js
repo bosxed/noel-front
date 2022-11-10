@@ -106,16 +106,16 @@ const FormCategorias = (accion) => {
                     </div>
                     <div className="col-12 col-sm-12 col-md-6 col-lg-4">
                         Ingrese el estado de la categoria
-                        <input className='from-control' type="checkbox" name="estado" id="estado" checked={estado} onChange={cambiarEstado} value={estado}/>
+                        <input className='from-control form-check-input' type="checkbox" name="estado" id="estado" checked={estado} onChange={cambiarEstado} value={estado}/>
                         {/* <input className="form-control form-control-sm" type="checkbox" id="estado" name="estado" value="Estado" checked={checked} onChange={handleChange}/> */}
                     </div>
                     <br></br>
                     <br></br>
                     <div className="row">
                         <div className="col-3">
-                            <input className="btn btn-sm btn-info" type="submit" value="Guardar" onClick={guardarCategoria} />
+                            <input className="btn btn-sm btn-info me-3" type="submit" value="Guardar" onClick={guardarCategoria} />
                             {/* <a href="/" className="btn btn-sm btn-info">Guargar</a> */}
-                            <a href="/categorias" className="btn btn-sm btn-danger">Cancelar</a>
+                            <a href="/categorias" className="btn btn-sm btn-danger ">Cancelar</a>
                         </div>
                     </div>
                 </div>
