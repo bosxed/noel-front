@@ -92,19 +92,19 @@ const FormCategorias = (accion) => {
             <h3>{mensaje}</h3>
             <form action="POST">
                 <div className="row">
-                    <div className="col-4">
+                    <div className="col-12 col-sm-12 col-md-6 col-lg-4">
                         Ingrese el nombre de la categoria
                         <input className="form-control form-control-sm" type="text" placeholder="nombre" name="nombre" id="nombre" onChange={cambiarNombre} value={nombre}/>
                     </div>
-                    <div className="col-4">
+                    <div className="col-12 col-sm-12 col-md-6 col-lg-4">
                         Ingrese la descripcion de la categoria
                         <input className="form-control form-control-sm" type="text" placeholder="descripcion" name="descripcion" id="descripcion" onChange={cambiarDescription}  value={description} />
                     </div>
-                    <div className="col-4">
+                    <div className="col-12 col-sm-12 col-md-6 col-lg-4">
                         Ingrese la ruta de la imagen de la categoria
                         <input className="form-control form-control-sm" type="text" placeholder="imagen" name="imagen" id="imagen" onChange={cambiarImagen}  value={imagen}/>
                     </div>
-                    <div className="col-4">
+                    <div className="col-12 col-sm-12 col-md-6 col-lg-4">
                         Ingrese el estado de la categoria
                         <input className='from-control' type="checkbox" name="estado" id="estado" checked={estado} onChange={cambiarEstado} value={estado}/>
                         {/* <input className="form-control form-control-sm" type="checkbox" id="estado" name="estado" value="Estado" checked={checked} onChange={handleChange}/> */}
