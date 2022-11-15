@@ -8,6 +8,8 @@ const TablaUsuarios = () => {
     const [listaUsuarios, setListaUsuarios] = useState([]);
     const [estado, setEstado] = useState(Estados.CARGANDO);
     const [criterio, setCriterio] = useState("");
+    const [idBorrar, setIdBorrar] = useState("");
+    const [nombreBorrar, setNombreBorrar] = useState("");
 
 
     const cargarPagina = async () => {
@@ -69,9 +71,23 @@ const TablaUsuarios = () => {
         setCriterio(event.target.value);
     }
 
+    const confirmarBorrado = (id, nombre) => {
+        setIdBorrar(id);
+        setNombreBorrar(nombre);
+    }
+
+    const borrarCliente = async () => {
+        try {
+            await usuarioServicios.EliminarUsuario(idBorrar);
+            cargarPagina();
+        } catch (error) {
+
+        }
+
+    }
     return (
         <div className="container">
-            <h3> Lista de usuarios</h3>
+            <h3> Lista de Usuarios</h3>
             <a href="/usuarios/form" className="btn btn-sm btn-success">Nuevo</a>
             <br></br>
             <br></br>
@@ -121,9 +137,9 @@ const TablaUsuarios = () => {
                                                     <p className="card-text">{usuario.apellido}</p>
                                                     <p className="card-text">{usuario.correo}</p>
                                                     <p className="card-text">{usuario.rol}</p>
-                                                    <a href={"/usuarios/form/"+usuario._id} className="btn btn-primary btn-sm me" >Editar</a>
+                                                    <a href={"/usuarios/form/" + usuario._id} className="btn btn-primary btn-sm me" >Editar</a>
                                                     {/* <button className="btn btn-primary btn-sm me" onclick={href="/categorias/form"}>Editar</button> */}
-                                                    <button className="btn btn-danger btn-sm" onClick={() => { if (window.confirm('Esta seguro que desea eliminar este usuario?')) { this.deleteHandler() }; }}>Eliminar</button>
+                                                    <button onClick={() => { confirmarBorrado(usuario._id, usuario.nombre) }} className="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modalBorrado">Eliminar</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -133,6 +149,24 @@ const TablaUsuarios = () => {
 
                 </div>
             </div>
+            <div className="modal fade" id="modalBorrado" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h1 className="modal-title fs-5" id="staticBackdropLabel">Borrado de usuario</h1>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body">
+                            Está seguro de borrar el usuario {nombreBorrar}?
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" onClick={borrarCliente} className="btn btn-danger" data-bs-dismiss="modal">Eliminar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
     )
