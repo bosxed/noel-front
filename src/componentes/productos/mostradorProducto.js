@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import EstadoDatos from "../../enums/EstadoDatos";
+import EstadoDatos from "../../enums/Estados";
 import productosServicios from "../../servicios/productosServicios";
 import CardProducto from "./CardProducto";
 

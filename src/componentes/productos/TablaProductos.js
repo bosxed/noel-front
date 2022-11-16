@@ -1,5 +1,5 @@
 import productosServicios from "../../servicios/productosServicios";
-import EstadoDatos from "../../enums/EstadoDatos";
+import EstadoDatos from "../../enums/Estados";
 import { useState, useEffect } from "react";
 
 const TablaProductos = () => {

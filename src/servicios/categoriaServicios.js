@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const URI = "https://noel-api.herokuapp.com/";
+const URI = "http://localhost:8000/";
+// const URI = "https://noel-api.herokuapp.com/";
 
 const categoriaServicios = {};
 
