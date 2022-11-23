@@ -3,7 +3,7 @@ import axios from "axios";
 const productosServicios = {}
 const URI = "http://localhost:8000/";
 // const URI = "https://noel-api.herokuapp.com/";
-const URL = URI+"productos/";
+const URL = URI+"productos";
     
 productosServicios.listarProductos = () => {
     return axios.get(URL);
@@ -22,7 +22,7 @@ productosServicios.filtrarProductosDisponibles = (criterio) => {
 }
 
 productosServicios.cargarProducto = (id) => {
-    return axios.get(URL + id);
+    return axios.get(URL +"/"+ id);
 }
 
 productosServicios.guardarProducto = (producto) => {
@@ -30,11 +30,11 @@ productosServicios.guardarProducto = (producto) => {
 }
 
 productosServicios.modificarProducto = (id, producto) => {
-    return axios.put(URL + id, producto);
+    return axios.put(URL +"/"+ id, producto);
 }
 
 productosServicios.eliminarProducto = (id) => {
-    return axios.delete(URL + id);
+    return axios.delete(URL +"/"+ id);
 }
 
 export default productosServicios;

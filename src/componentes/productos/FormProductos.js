@@ -12,6 +12,7 @@ const FormProductos = () => {
     const [codigo, setcodigo] = useState("");
     const [cantidad, setCantidad] = useState("");
     const [precio, setPrecio] = useState("");
+    const [costo, setCosto] = useState("");
     const [descripcion, setdescripcion] = useState([""]);
     const [disponible, setDisponible] = useState(false);
     const [categoria, setCategoria] = useState("");
@@ -26,23 +27,24 @@ const FormProductos = () => {
             const datosProducto = {
                 
                 nombre: nombre,
-                marca: marca,
                 codigo: codigo,
-                cantidad: cantidad,
-                precio: precio,
-                descripcion: descripcion,
-                disponible: disponible,
+                marca: marca,
                 categoria: categoria,
-                imagenes: imagenes
+                precio: precio,
+                costo: costo,
+                disp: disponible,
+                descripcion: descripcion,
+                imagen: imagenes
             }
             console.log(datosProducto);
+            // console.log(id);
             if (id == null) {
-                await productosServicios.guardarProducto(datosProducto);
+                const respuesta =  await productosServicios.guardarProducto(datosProducto);
             } else {
-                await productosServicios.modificarProducto(id, datosProducto);
+                const respuesta =  await productosServicios.modificarProducto(id, datosProducto);
             }
             goTo("/productos");
-        } catch (error) {
+        } catch (error) { 
             console.log(error);
         }
     };
@@ -57,10 +59,11 @@ const FormProductos = () => {
                 setcodigo(respuesta.data.codigo);
                 setCantidad(respuesta.data.cantidad);
                 setPrecio(respuesta.data.precio);
+                setCosto(respuesta.data.costo);
                 setdescripcion(respuesta.data.descripcion);
                 setDisponible(respuesta.data.disponible);
                 setCategoria(respuesta.data.categoria);
-                setImagenes(respuesta.data.imagenes);
+                setImagenes(respuesta.data.imagen);
             }
         } catch (error) {
             console.log("Ocurrió un error. " + error);
@@ -100,6 +103,10 @@ const FormProductos = () => {
         setPrecio(event.target.value);
     };
 
+    const cambiarCosto = (event) => {
+        setCosto(event.target.value);
+    };
+
     const cambiardescripcion = (event) => {
         setdescripcion(event.target.value);
     };
@@ -122,7 +129,7 @@ const FormProductos = () => {
             <div className="mb-3">
                 <label htmlFor="codigo" className="form-label" >Codigo:</label>
                 <input type="text" className="form-control" onChange={cambiarcodigo} value={codigo} id="codigo" rows="3"
-                    placeholder="Ingrese aquí la codigo " name="codigo" required ></input>
+                    placeholder="Ingrese aquí el codigo " name="codigo" required ></input>
             </div>
             <div className="mb-3">
                 <label htmlFor="name" className="form-label" >Producto:</label>
@@ -142,33 +149,39 @@ const FormProductos = () => {
             <div className="mb-3">
                 <label htmlFor="precio" className="form-label" >Precio:</label>
                 <input type="text" className="form-control" onChange={cambiarPrecio} value={precio} id="precio" rows="3"
-                    placeholder="Ingrese aquí la precio" name="precio" required ></input>
+                    placeholder="Ingrese aquí el precio" name="precio" required ></input>
             </div>
             <div className="mb-3">
+                <label htmlFor="costo" className="form-label" >Costo:</label>
+                <input type="text" className="form-control" onChange={cambiarCosto} value={costo} id="costo" rows="3"
+                    placeholder="Ingrese aquí el costo" name="costo" required ></input>
+            </div>
+            {/* <div className="mb-3">
                 <label htmlFor="cantidad" className="form-label" >Cantidad:</label>
                 <input type="text" className="form-control" onChange={cambiarCantidad} value={cantidad} id="cantidad" rows="3"
                     placeholder="Ingrese aquí la cantidad" name="cantidad" required ></input>
-            </div>
+            </div> */}
             <div className="mb-3">
                 <label htmlFor="imagenes" className="form-label">Imágenes:</label>
                 <input className="form-control" onChange={cambiarImagenes} value={imagenes} type="text" id="imagenes" name="imagenes"
-                    placeholder="Ingrese el nombre de las imágenes" />
+                    placeholder="Ingrese el nombre de la imágen" />
             </div>
             <div className="mb-3">
                 <label htmlFor="descripcion" className="form-label" >Descripcion:</label>
                 <input type="text" className="form-control" onChange={cambiardescripcion} value={descripcion} id="descripcion" rows="3"
                     placeholder="Ingrese aquí la descripcion" name="descripcion" ></input>
             </div>
-            <div className="col-3">
+            {/* <div className="col-3">
                     <img className="form-control"  src={publicImgsURL+imagenes} alt="Ingrese imagen de carpeta pública" width="100%"/>
-            </div> 
+            </div>  */}
             <div className="form-check">
                 <input className="form-check-input" type="checkbox" onChange={cambiarDisponible} checked={disponible}
                     id="disponible" name="disponible" />
                 <label className="form-check-label" htmlFor="disponible">Disponible</label>
             </div>
             <div className="py-4 text-center">
-                <button className="btn btn-primary me-2">Guardar</button>
+                {/* <button className="btn btn-primary me-2">Guardar</button> */}
+                <input className="btn btn-primary me-2" type="submit" value="Guardar" onClick={guardarProducto} />
                 <a href="/productos" className="btn btn-dark">Cancelar</a>
             </div>
         </form>

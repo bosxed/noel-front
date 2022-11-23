@@ -40,7 +40,9 @@ const TablaProductos = () => {
 
 	const borrarProducto = async () => {
 		try {
-			const resultado = await productosServicios.borrarProducto(productoBorrar);
+      console.log(productoBorrar);
+			const resultado = await productosServicios.eliminarProducto(productoBorrar);
+      console.log(resultado);
 			cargarProductos();
 		} catch (error) {
 			console.log(error);
@@ -164,7 +166,7 @@ const TablaProductos = () => {
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-dark" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" onClick={nombreProductoBorrar} className="btn btn-danger" data-bs-dismiss="modal">Eliminar</button>
+                <button type="button" onClick={borrarProducto} className="btn btn-danger" data-bs-dismiss="modal">Eliminar</button>
               </div>
             </div>
           </div>
